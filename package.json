@@ -1,6 +1,6 @@
 {
   "name": "vue-hm-calendar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "It is a Vue component to create a calendar heatmap",
   "main": "dist/vue-hm-calendar.ssr.js",
   "browser": "dist/vue-hm-calendar.esm.js",
@@ -16,6 +16,16 @@
     "heatmap",
     "calendar"
   ],
+  "homepage": "https://github.com/cargovova/vue-hm-calendar#readme",
+  "repository": {
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/cargovova/vue-hm-calendar"
+    }
+  },
+  "bugs": {
+    "email": "cargovova@hostname.com"
+  },
   "sideEffects": false,
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",
