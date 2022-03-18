@@ -22,7 +22,9 @@ export default {
   },
   data() {
     return {
-      selectedMonthDate: dayjs().month(this.monthNumber).date(1),
+      selectedMonthDate: dayjs()
+        .month(this.monthNumber || dayjs().month())
+        .date(1),
     }
   },
   computed: {

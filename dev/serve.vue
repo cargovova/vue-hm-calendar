@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-hm-calendar firstWeekDay="MONDAY" :monthNumber="2" />
+    <vue-hm-calendar />
   </div>
 </template>
 
