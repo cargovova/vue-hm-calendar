@@ -24,6 +24,8 @@ export default {
       },
     },
     hideHeader: Boolean,
+    eventsDays: Object,
+    eventsColors: Array,
   },
   data() {
     return {
@@ -51,22 +53,24 @@ export default {
         for (let j = 0; j < 7; j++) {
           const selectedYearDay = this.selectedMonthDate.date(date).dayOfYear()
           const dayOptions = {
-            style: 'background-color: #f3f3f3;',
+            style: '',
             date: this.selectedMonthDate.date(date).format('ddd, MMM D, YYYY'),
           }
           if (i === 0 && j < firstDay) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
           } else if (curentYearDay === selectedYearDay) {
-            dayOptions.style += ' border: 1px solid black;'
+            dayOptions.style = `${this.calcColor(this.eventsDays?.[date])} border: 1px solid black;`
             date++
           } else if (date > daysInMonth) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
             date++
           } else if (curentYearDay > selectedYearDay) {
+            dayOptions.style = this.calcColor(this.eventsDays?.[date])
             date++
           } else if (curentYearDay < selectedYearDay) {
+            dayOptions.style = this.calcColor(this.eventsDays?.[date])
             date++
           }
           row.push(dayOptions)
@@ -74,6 +78,19 @@ export default {
         month.push(row)
       }
       return month
+    },
+  },
+  methods: {
+    calcColor(eventCount) {
+      let color = '#f3f3f3;'
+      if (eventCount === 1) {
+        color = this.eventsColors[0]
+      } else if (eventCount === 2) {
+        color = this.eventsColors[1]
+      } else if (eventCount > 2) {
+        color = this.eventsColors[2]
+      }
+      return `background-color: ${color};`
     },
   },
 }

@@ -26,6 +26,13 @@ export default {
       },
     },
     monthNumber: [String, Number],
+    eventsDays: Object,
+    eventsColors: {
+      type: Array,
+      default: function () {
+        return ['#66BB6A', '#388E3C', '#1B5E20']
+      },
+    },
   },
   components: {
     Month,
