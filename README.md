@@ -21,5 +21,19 @@ Vue.use(VueHmCalendar)
 In a Vue component in a template use
 
 ```
-<vue-hm-calendar />
+<vue-hm-calendar props/>
 ```
+
+_*Props*_
+
+**⚠️ You have to setup a mode**
+
+**mode** - `month` - _required_
+
+When the month mode is selected.
+
+**monthNumber** - `0-11`
+
+**firstWeekDay** - `monday, saturday` (Sunday selected by default)
+
+**hideHeader** - `true`
