@@ -8,6 +8,7 @@
       :monthNumber="monthNumber"
       :eventsDays="eventsDays"
       :eventsColors="eventsColors"
+      :cellSize="cellSize"
     />
   </div>
 </template>
@@ -41,6 +42,7 @@ export default {
         return ['#66BB6A', '#388E3C', '#1B5E20']
       },
     },
+    cellSize: String,
   },
   components: {
     Month,

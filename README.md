@@ -45,3 +45,5 @@ When the month mode is selected.
 **eventsDays** - `{ 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 }` - Property names is date of month(1,2,3...), values is count of events.
 
 **eventsColors** - `:eventsColors="['#66BB6A', '#388E3C', '#1B5E20']"` - Colors for the heatmap. For one, two, three and more events.
+
+**cellSize** - `1px; | 20% ...` - Css Width and height of cell.

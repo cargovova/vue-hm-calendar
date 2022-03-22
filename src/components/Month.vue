@@ -3,7 +3,7 @@
     <div v-if="!hideHeader" style="text-align: center" v-html="selectedMonthDate.format('MMM')"></div>
     <div style="display: flex; flex-direction: row" v-for="(week, i) in month" :key="i">
       <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
-        <div style="width: 0.5rem; height: 0.5rem; box-sizing: border-box" :style="day.style" :title="day.date"></div>
+        <div :style="cellStyle + day.style" :title="day.date"></div>
       </div>
     </div>
   </div>
@@ -26,6 +26,7 @@ export default {
     hideHeader: Boolean,
     eventsDays: Object,
     eventsColors: Array,
+    cellSize: String,
   },
   data() {
     return {
@@ -78,6 +79,9 @@ export default {
         month.push(row)
       }
       return month
+    },
+    cellStyle() {
+      return `width: ${this.cellSize || '1rem'}; height: ${this.cellSize || '1rem'}; box-sizing: border-box;`
     },
   },
   methods: {
