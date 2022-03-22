@@ -1,6 +1,14 @@
 <template>
   <div>
-    <month v-if="mode === 'month'" :dayjs="dayjs" />
+    <month
+      v-if="mode === 'month'"
+      :dayjs="dayjs"
+      :hideHeader="hideHeader"
+      :firstWeekDay="firstWeekDay"
+      :monthNumber="monthNumber"
+      :eventsDays="eventsDays"
+      :eventsColors="eventsColors"
+    />
   </div>
 </template>
 
