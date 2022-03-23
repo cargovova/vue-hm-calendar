@@ -19,6 +19,7 @@
       :cellSize="cellSize"
       :yearNumber="+yearNumber"
       :firstWeekDay="firstWeekDay"
+      :hideHeader="hideHeader"
     />
   </div>
 </template>

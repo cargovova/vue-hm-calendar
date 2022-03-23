@@ -61,7 +61,7 @@ export default {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
           } else if (curentYearDay === selectedYearDay) {
-            dayOptions.style = `${this.calcColor(this.eventsDays?.[date])} border: 1px solid black;`
+            dayOptions.style = `${this.calcColor(this.eventsDays?.[date])} border: 1px solid black; border-radius: 4px;`
             date++
           } else if (date > daysInMonth) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'

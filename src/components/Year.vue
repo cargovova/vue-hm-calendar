@@ -1,16 +1,29 @@
 <template>
   <div style="display: inline-block; display: flex; flex-direction: row">
     <div v-if="!hideWeekNames">
+      <div :style="'height: ' + (cellSize || '1rem')"></div>
       <div v-for="(name, i) in monthNames" :key="i">
         <div style="padding: 0.125rem">
           <div :style="'height: ' + (cellSize || '1rem')">{{ name }}</div>
         </div>
       </div>
     </div>
-    <div style="display: flex; flex-direction: row">
-      <div v-for="(week, i) in year" :key="i">
-        <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
-          <div :style="cellStyle + day.style" :title="day.date"></div>
+    <div>
+      <div
+        v-if="!hideHeader"
+        style="display: inline-block; display: flex; flex-direction: row; justify-content: space-between"
+      >
+        <div v-for="i in 12" :key="i">
+          <span v-if="i === 1">&nbsp;&nbsp;&nbsp;</span>
+          {{ dayjs.month(i - 1).format('MMM') }}
+          <span v-if="i === 12">&nbsp;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: row">
+        <div v-for="(week, i) in year" :key="i">
+          <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
+            <div :style="cellStyle + day.style" :title="day.date"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -80,7 +93,7 @@ export default {
         selectedDayOfYear = 0
       }
       let date = 1
-      for (let i = 0; i <= weeksInYear; i++) {
+      for (let i = 0; i <= weeksInYear + 1; i++) {
         const week = []
         for (let j = 0; j < 7; j++) {
           const dayOptions = {
@@ -88,16 +101,25 @@ export default {
             date: this.dayjs.dayOfYear(date),
           }
           if (i === 0 && j < this.firstDay) {
-            dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
-            dayOptions.date = null
+          } else if (date === selectedDayOfYear) {
+            dayOptions.style = `${this.calcColor(this.eventsDays?.[date])} border: 1px solid black; border-radius: 4px;`
+            date++
+          } else if (date === this.lastYearDay.dayOfYear()) {
+            dayOptions.style = this.calcColor(this.eventsDays?.[date])
+            date++
           } else if (date > this.lastYearDay.dayOfYear()) {
-            dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
-            dayOptions.date = null
+            break
           } else {
             dayOptions.style = this.calcColor(this.eventsDays?.[date])
             date++
           }
-          week.push(dayOptions)
+          if (i === 0) {
+            if (this.firstDay !== 7) {
+              week.push(dayOptions)
+            }
+          } else {
+            week.push(dayOptions)
+          }
         }
         year.push(week)
       }
