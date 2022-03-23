@@ -7,7 +7,7 @@
       :firstWeekDay="firstWeekDay"
       :monthNumber="monthNumber"
       :eventsDays="eventsDays"
-      :eventsColors="eventsColors"
+      :pastEventsColors="pastEventsColors"
       :cellSize="cellSize"
       :yearNumber="yearNumber"
     />
@@ -16,7 +16,7 @@
       :dayjs="dayjs"
       :hideWeekNames="hideWeekNames"
       :eventsDays="eventsDays"
-      :eventsColors="eventsColors"
+      :pastEventsColors="pastEventsColors"
       :cellSize="cellSize"
       :yearNumber="yearNumber"
       :firstWeekDay="firstWeekDay"
@@ -49,7 +49,7 @@ export default {
     },
     monthNumber: Number,
     eventsDays: Object,
-    eventsColors: {
+    pastEventsColors: {
       type: Array,
       default: function () {
         return ['#66BB6A', '#388E3C', '#1B5E20']

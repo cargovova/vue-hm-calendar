@@ -41,7 +41,7 @@ export default {
     firstWeekDay: String,
     hideHeader: Boolean,
     eventsDays: Object,
-    eventsColors: Array,
+    pastEventsColors: Array,
     cellSize: String,
     yearNumber: Number,
     hideWeekNames: Boolean,
@@ -86,7 +86,7 @@ export default {
     year() {
       const year = []
       const weeksInYear = this.lastYearDay.diff(this.firstYearDay, 'week')
-      const selectedDayOfYear = this.dayjs.dayOfYear()
+      let selectedDayOfYear = this.dayjs.dayOfYear()
       if (this.yearNumber < this.dayjsYear) {
         selectedDayOfYear = 367
       } else if (this.yearNumber > this.dayjsYear) {
@@ -130,11 +130,11 @@ export default {
     calcColor(eventCount) {
       let color = '#f3f3f3;'
       if (eventCount === 1) {
-        color = this.eventsColors[0]
+        color = this.pastEventsColors[0]
       } else if (eventCount === 2) {
-        color = this.eventsColors[1]
+        color = this.pastEventsColors[1]
       } else if (eventCount > 2) {
-        color = this.eventsColors[2]
+        color = this.pastEventsColors[2]
       }
       return `background-color: ${color};`
     },

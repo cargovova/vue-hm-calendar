@@ -60,15 +60,15 @@ _Default_: `sunday`
 
 _Description_: Only a monday or a saturday.
 
-**eventsColors** - `HEX, rgb(), rgba()`
+**pastEventsColors** - `HEX, rgb(), rgba()`
 
 _Type_: Array
 
 _Description_: Colors for heatmaping. For one, two, three and more events in the past. Colors for future events not change.
 
-_Example_ `:eventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
+_Example_ `:pastEventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
 
-_Default_: `:eventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
+_Default_: `:pastEventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
 
 **cellSize** - `1px; | 20% | 1rem`
 
