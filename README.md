@@ -78,13 +78,13 @@ _Description_: The CSS width and height property of a cell.
 
 _Example_ `cellSize="30px"`
 
-**eventsDays** - `{ 1: 1, 2: 2 }`
+**eventsDays** - `{ '2022-02-01': 1, ... }`
 
 _Type_: Object
 
 _Description_: Property names is dates of the month(1,2,3...), values is a count of events.
 
-_Example_ `:eventsDays={ 1: 1, 2: 2, 3: 3 }`
+_Example_ `:eventsDays={ '2022-02-01': 1, '2022-02-02': 2 }`
 
 **yearNumber** - `2022`
 

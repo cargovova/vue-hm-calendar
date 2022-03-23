@@ -25,15 +25,10 @@ export default {
     cellSize: String,
     yearNumber: Number,
   },
-  data() {
-    return {
-      selectedMonthDate: this.dayjs()
-        .year(this.yearNumber)
-        .month(this.monthNumber || this.dayjs().month())
-        .date(1),
-    }
-  },
   computed: {
+    selectedMonthDate() {
+      return this.dayjs().year(this.yearNumber).month(this.monthNumber).date(1)
+    },
     month() {
       const curentYearDay = this.dayjs().dayOfYear()
       const daysInMonth = this.selectedMonthDate.daysInMonth()
@@ -62,11 +57,9 @@ export default {
             dayOptions.date = null
           } else if (curentYearDay === selectedYearDay) {
             if (this.yearNumber === this.dayjs().year()) {
-              dayOptions.style = `${this.calcColor(
-                this.eventsDays?.[date]
-              )} border: 1px solid black; border-radius: 4px;`
+              dayOptions.style = `${this.calcColor(date)} border: 1px solid black; border-radius: 4px;`
             } else {
-              dayOptions.style = this.calcColor(this.eventsDays?.[date])
+              dayOptions.style = this.calcColor(date)
             }
             date++
           } else if (date > daysInMonth) {
@@ -74,10 +67,10 @@ export default {
             dayOptions.date = null
             date++
           } else if (curentYearDay > selectedYearDay) {
-            dayOptions.style = this.calcColor(this.eventsDays?.[date])
+            dayOptions.style = this.calcColor(date)
             date++
           } else if (curentYearDay < selectedYearDay) {
-            dayOptions.style = this.calcColor(this.eventsDays?.[date])
+            dayOptions.style = this.calcColor(date)
             date++
           }
           row.push(dayOptions)
@@ -91,7 +84,9 @@ export default {
     },
   },
   methods: {
-    calcColor(eventCount) {
+    calcColor(date) {
+      const eventCount =
+        this.eventsDays?.[this.dayjs().year(this.yearNumber).month(this.monthNumber).date(date).format('YYYY-MM-DD')]
       let color = '#f3f3f3;'
       if (eventCount === 1) {
         color = this.pastEventsColors[0]

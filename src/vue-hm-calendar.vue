@@ -47,7 +47,13 @@ export default {
         return ['monday', 'saturday'].includes(value)
       },
     },
-    monthNumber: Number,
+    monthNumber: {
+      type: Number,
+      validator: function (value) {
+        return /^[0-9]{2}$/.test(value.toString())
+      },
+      default: dayjs().month(),
+    },
     eventsDays: Object,
     pastEventsColors: {
       type: Array,
