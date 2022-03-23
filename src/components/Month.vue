@@ -24,6 +24,7 @@ export default {
     pastEventsColors: Array,
     cellSize: String,
     yearNumber: Number,
+    futureEventColors: Array,
   },
   computed: {
     selectedMonthDate() {
@@ -41,7 +42,6 @@ export default {
           firstDay++
           break
       }
-
       let date = 1
       const month = []
       for (let i = 0; i < 6; i++) {
@@ -70,7 +70,7 @@ export default {
             dayOptions.style = this.calcColor(date)
             date++
           } else if (curentYearDay < selectedYearDay) {
-            dayOptions.style = this.calcColor(date)
+            dayOptions.style = this.calcColor(date, true)
             date++
           }
           row.push(dayOptions)
@@ -84,16 +84,16 @@ export default {
     },
   },
   methods: {
-    calcColor(date) {
+    calcColor(date, isFuture) {
       const eventCount =
         this.eventsDays?.[this.dayjs().year(this.yearNumber).month(this.monthNumber).date(date).format('YYYY-MM-DD')]
       let color = '#f3f3f3;'
       if (eventCount === 1) {
-        color = this.pastEventsColors[0]
+        color = isFuture ? this.futureEventColors[0] : this.pastEventsColors[0]
       } else if (eventCount === 2) {
-        color = this.pastEventsColors[1]
+        color = isFuture ? this.futureEventColors[1] : this.pastEventsColors[1]
       } else if (eventCount > 2) {
-        color = this.pastEventsColors[2]
+        color = isFuture ? this.futureEventColors[2] : this.pastEventsColors[2]
       }
       return `background-color: ${color};`
     },

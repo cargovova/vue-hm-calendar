@@ -49,6 +49,7 @@ export default {
     cellSize: String,
     yearNumber: Number,
     hideWeekNames: Boolean,
+    futureEventColors: Array,
   },
   data() {
     return {
@@ -125,6 +126,9 @@ export default {
             date++
           } else if (date > this.lastYearDay.dayOfYear()) {
             break
+          } else if (date > selectedDayOfYear) {
+            dayOptions.style = this.calcColor(date, true)
+            date++
           } else {
             dayOptions.style = this.calcColor(date)
             date++
@@ -143,15 +147,15 @@ export default {
     },
   },
   methods: {
-    calcColor(date) {
+    calcColor(date, isFuture) {
       const eventCount = this.eventsDays?.[this.dayjs().year(this.yearNumber).dayOfYear(date).format('YYYY-MM-DD')]
       let color = '#f3f3f3;'
       if (eventCount === 1) {
-        color = this.pastEventsColors[0]
+        color = isFuture ? this.futureEventColors[0] : this.pastEventsColors[0]
       } else if (eventCount === 2) {
-        color = this.pastEventsColors[1]
+        color = isFuture ? this.futureEventColors[1] : this.pastEventsColors[1]
       } else if (eventCount > 2) {
-        color = this.pastEventsColors[2]
+        color = isFuture ? this.futureEventColors[2] : this.pastEventsColors[2]
       }
       return `background-color: ${color};`
     },
