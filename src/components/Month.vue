@@ -14,7 +14,7 @@ export default {
   name: 'Month',
   props: {
     dayjs: {
-      type: Object,
+      type: Function,
       required: true,
     },
     monthNumber: Number,
@@ -27,15 +27,15 @@ export default {
   },
   data() {
     return {
-      selectedMonthDate: this.dayjs
+      selectedMonthDate: this.dayjs()
         .year(this.yearNumber)
-        .month(this.monthNumber || this.dayjs.month())
+        .month(this.monthNumber || this.dayjs().month())
         .date(1),
     }
   },
   computed: {
     month() {
-      const curentYearDay = this.dayjs.dayOfYear()
+      const curentYearDay = this.dayjs().dayOfYear()
       const daysInMonth = this.selectedMonthDate.daysInMonth()
       let firstDay = this.selectedMonthDate.day()
       switch (this.firstWeekDay) {
@@ -61,7 +61,7 @@ export default {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
           } else if (curentYearDay === selectedYearDay) {
-            if (this.yearNumber === this.dayjs.year()) {
+            if (this.yearNumber === this.dayjs().year()) {
               dayOptions.style = `${this.calcColor(
                 this.eventsDays?.[date]
               )} border: 1px solid black; border-radius: 4px;`

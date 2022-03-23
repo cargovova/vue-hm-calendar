@@ -15,7 +15,11 @@
       >
         <div v-for="i in 12" :key="i">
           <span v-if="i === 1">&nbsp;&nbsp;&nbsp;</span>
-          {{ dayjs.month(i - 1).format('MMM') }}
+          {{
+            dayjs()
+              .month(i - 1)
+              .format('MMM')
+          }}
           <span v-if="i === 12">&nbsp;&nbsp;&nbsp;</span>
         </div>
       </div>
@@ -35,7 +39,7 @@ export default {
   name: 'Year',
   props: {
     dayjs: {
-      type: Object,
+      type: Function,
       required: true,
     },
     firstWeekDay: String,
@@ -48,9 +52,9 @@ export default {
   },
   data() {
     return {
-      dayjsYear: this.dayjs.year(),
-      firstYearDay: this.dayjs.year(this.yearNumber).month(0).date(1),
-      lastYearDay: this.dayjs.year(this.yearNumber).month(11).date(31),
+      dayjsYear: this.dayjs().year(),
+      firstYearDay: this.dayjs().year(this.yearNumber).month(0).date(1),
+      lastYearDay: this.dayjs().year(this.yearNumber).month(11).date(31),
       cellStyle: `width: ${this.cellSize || '1rem'}; height: ${this.cellSize || '1rem'}; box-sizing: border-box;`,
     }
   },
@@ -79,14 +83,20 @@ export default {
           break
       }
       for (let i = 0; i < 7; i++) {
-        names.push(i % 2 ? this.dayjs.day(i + index).format('ddd') : '')
+        names.push(
+          i % 2
+            ? this.dayjs()
+                .day(i + index)
+                .format('ddd')
+            : ''
+        )
       }
       return names
     },
     year() {
       const year = []
       const weeksInYear = this.lastYearDay.diff(this.firstYearDay, 'week')
-      let selectedDayOfYear = this.dayjs.dayOfYear()
+      let selectedDayOfYear = this.dayjs().dayOfYear()
       if (this.yearNumber < this.dayjsYear) {
         selectedDayOfYear = 367
       } else if (this.yearNumber > this.dayjsYear) {
@@ -98,7 +108,7 @@ export default {
         for (let j = 0; j < 7; j++) {
           const dayOptions = {
             style: '',
-            date: this.dayjs.dayOfYear(date),
+            date: this.dayjs().dayOfYear(date),
           }
           if (i === 0 && j < this.firstDay) {
           } else if (date === selectedDayOfYear) {
