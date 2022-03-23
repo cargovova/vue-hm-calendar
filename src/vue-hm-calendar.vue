@@ -50,7 +50,7 @@ export default {
     monthNumber: {
       type: Number,
       validator: function (value) {
-        return /^[0-9]{2}$/.test(value.toString())
+        return /^[0-9]|10|11$/.test(value.toString())
       },
       default: dayjs().month(),
     },

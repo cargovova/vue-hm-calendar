@@ -53,12 +53,18 @@ export default {
   data() {
     return {
       dayjsYear: this.dayjs().year(),
-      firstYearDay: this.dayjs().year(this.yearNumber).month(0).date(1),
-      lastYearDay: this.dayjs().year(this.yearNumber).month(11).date(31),
-      cellStyle: `width: ${this.cellSize || '1rem'}; height: ${this.cellSize || '1rem'}; box-sizing: border-box;`,
     }
   },
   computed: {
+    firstYearDay() {
+      return this.dayjs().year(this.yearNumber).month(0).date(1)
+    },
+    lastYearDay() {
+      return this.dayjs().year(this.yearNumber).month(11).date(31)
+    },
+    cellStyle() {
+      return `width: ${this.cellSize || '1rem'}; height: ${this.cellSize || '1rem'}; box-sizing: border-box;`
+    },
     firstDay() {
       let firstDay = this.firstYearDay.day()
       switch (this.firstWeekDay) {
@@ -112,15 +118,15 @@ export default {
           }
           if (i === 0 && j < this.firstDay) {
           } else if (date === selectedDayOfYear) {
-            dayOptions.style = `${this.calcColor(this.eventsDays?.[date])} border: 1px solid black; border-radius: 4px;`
+            dayOptions.style = `${this.calcColor(date)} border: 1px solid black; border-radius: 4px;`
             date++
           } else if (date === this.lastYearDay.dayOfYear()) {
-            dayOptions.style = this.calcColor(this.eventsDays?.[date])
+            dayOptions.style = this.calcColor(date)
             date++
           } else if (date > this.lastYearDay.dayOfYear()) {
             break
           } else {
-            dayOptions.style = this.calcColor(this.eventsDays?.[date])
+            dayOptions.style = this.calcColor(date)
             date++
           }
           if (i === 0) {
@@ -137,7 +143,8 @@ export default {
     },
   },
   methods: {
-    calcColor(eventCount) {
+    calcColor(date) {
+      const eventCount = this.eventsDays?.[this.dayjs().year(this.yearNumber).dayOfYear(date).format('YYYY-MM-DD')]
       let color = '#f3f3f3;'
       if (eventCount === 1) {
         color = this.pastEventsColors[0]
