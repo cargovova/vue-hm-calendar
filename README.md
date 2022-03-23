@@ -1,8 +1,8 @@
 # vue-hm-calendar
 
-<img width="100" src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/year.png" alt="">
+<img src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/year.png" alt="">
 
-<img width="100" src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/month.png" alt="">
+<img src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/month.png" alt="">
 
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://v2.vuejs.org/)
 
