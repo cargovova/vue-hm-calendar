@@ -1,5 +1,7 @@
 # vue-hm-calendar
 
+<img width="100" src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/year.png" alt="">
+
 <img width="100" src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/month.png" alt="">
 
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://v2.vuejs.org/)
@@ -7,7 +9,7 @@
 # Installation
 
 ```
-npm i vue-hm-calendar
+npm i --save vue-hm-calendar
 ```
 
 ## Default import
@@ -20,7 +22,7 @@ import VueHmCalendar from 'vue-hm-calendar'
 Vue.use(VueHmCalendar)
 ```
 
-## Usage
+# Usage
 
 In a Vue component in a template use
 
@@ -28,22 +30,80 @@ In a Vue component in a template use
 <vue-hm-calendar props/>
 ```
 
-_*Props*_
+## Props
 
-**⚠️ You have to setup a mode**
+### Common
 
-**mode** - `month` - _required_
+**mode**
 
-When the month mode is selected.
+**_⚠️ You have to setup a mode_**
+
+_Type_: String - `month | year` - _required_
+
+_Example_ `mode="month"`
+
+**hideHeader** - `true | false`
+
+_Type_: Boolean
+
+_Description_: Hide a header of a calendar.
+
+_Example_ `:hideHeader="true"`
+
+**firstWeekDay** - `monday, saturday`
+
+_Type_: String
+
+_Example_ `firstWeekDay="monday"`
+
+_Default_: `sunday`
+
+_Description_: Only a monday or a saturday.
+
+**eventsColors** - `HEX, rgb(), rgba()`
+
+_Type_: Array
+
+_Description_: Colors for heatmaping. For one, two, three and more events in the past. Colors for future events not change.
+
+_Example_ `:eventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
+
+_Default_: `:eventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
+
+**cellSize** - `1px; | 20% | 1rem`
+
+_Type_: String
+
+_Description_: The CSS width and height property of a cell.
+
+_Example_ `cellSize="30px"`
+
+**eventsDays** - `{ 1: 1, 2: 2 }`
+
+_Type_: Object
+
+_Description_: Property names is dates of the month(1,2,3...), values is a count of events.
+
+_Example_ `:eventsDays={ 1: 1, 2: 2, 3: 3 }`
+
+**yearNumber** - `2022`
+
+_Type_: Number
+
+_Example_ `:yearNumber="2022"`
+
+### For the month mode
 
 **monthNumber** - `0-11`
 
-**firstWeekDay** - `monday, saturday` (Sunday selected by default)
+_Type_: Number
 
-**hideHeader** - `:hideHeader="true"`
+_Example_ `:monthNumber="1"`
 
-**eventsDays** - `{ 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 }` - Property names is date of month(1,2,3...), values is count of events.
+### For the year mode
 
-**eventsColors** - `:eventsColors="['#66BB6A', '#388E3C', '#1B5E20']"` - Colors for the heatmap. For one, two, three and more events.
+**hideWeekNames**
 
-**cellSize** - `1px; | 20% ...` - Css Width and height of cell.
+_Type_: Boolean `true | false`
+
+_Example_ `:hideWeekNames="true"`
