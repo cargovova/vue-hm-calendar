@@ -17,20 +17,20 @@ export default {
       type: Object,
       required: true,
     },
-    monthNumber: [String, Number],
-    firstWeekDay: {
-      validator: function (value) {
-        return ['monday', 'saturday'].includes(value)
-      },
-    },
+    monthNumber: Number,
+    firstWeekDay: String,
     hideHeader: Boolean,
     eventsDays: Object,
     eventsColors: Array,
     cellSize: String,
+    yearNumber: Number,
   },
   data() {
     return {
-      selectedMonthDate: this.dayjs.month(this.monthNumber || this.dayjs.month()).date(1),
+      selectedMonthDate: this.dayjs
+        .year(this.yearNumber)
+        .month(this.monthNumber || this.dayjs.month())
+        .date(1),
     }
   },
   computed: {
@@ -61,7 +61,13 @@ export default {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
           } else if (curentYearDay === selectedYearDay) {
-            dayOptions.style = `${this.calcColor(this.eventsDays?.[date])} border: 1px solid black; border-radius: 4px;`
+            if (this.yearNumber === this.dayjs.year()) {
+              dayOptions.style = `${this.calcColor(
+                this.eventsDays?.[date]
+              )} border: 1px solid black; border-radius: 4px;`
+            } else {
+              dayOptions.style = this.calcColor(this.eventsDays?.[date])
+            }
             date++
           } else if (date > daysInMonth) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'

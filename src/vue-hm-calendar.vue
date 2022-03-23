@@ -9,6 +9,7 @@
       :eventsDays="eventsDays"
       :eventsColors="eventsColors"
       :cellSize="cellSize"
+      :yearNumber="yearNumber"
     />
     <year
       v-if="mode === 'year'"
@@ -17,7 +18,7 @@
       :eventsDays="eventsDays"
       :eventsColors="eventsColors"
       :cellSize="cellSize"
-      :yearNumber="+yearNumber"
+      :yearNumber="yearNumber"
       :firstWeekDay="firstWeekDay"
       :hideHeader="hideHeader"
     />
@@ -46,7 +47,7 @@ export default {
         return ['monday', 'saturday'].includes(value)
       },
     },
-    monthNumber: [String, Number],
+    monthNumber: Number,
     eventsDays: Object,
     eventsColors: {
       type: Array,
@@ -56,7 +57,7 @@ export default {
     },
     cellSize: String,
     yearNumber: {
-      type: [Number, String],
+      type: Number,
       validator: function (value) {
         return /^[0-9]{4}$/.test(value.toString())
       },
