@@ -10,6 +10,16 @@
       :eventsColors="eventsColors"
       :cellSize="cellSize"
     />
+    <year
+      v-if="mode === 'year'"
+      :dayjs="dayjs"
+      :hideWeekNames="hideWeekNames"
+      :eventsDays="eventsDays"
+      :eventsColors="eventsColors"
+      :cellSize="cellSize"
+      :yearNumber="+yearNumber"
+      :firstWeekDay="firstWeekDay"
+    />
   </div>
 </template>
 
@@ -18,13 +28,14 @@ import dayjs from 'dayjs'
 const dayOfYear = require('dayjs/plugin/dayOfYear')
 dayjs.extend(dayOfYear)
 import Month from './components/Month.vue'
+import Year from './components/Year.vue'
 
 export default {
   name: 'VueHmCalendar',
   props: {
     mode: {
       validator: function (value) {
-        return ['month', 'year', 'quarter', 'week'].includes(value)
+        return ['month', 'year'].includes(value)
       },
       required: true,
     },
@@ -43,9 +54,18 @@ export default {
       },
     },
     cellSize: String,
+    yearNumber: {
+      type: [Number, String],
+      validator: function (value) {
+        return /^[0-9]{4}$/.test(value.toString())
+      },
+      default: dayjs().year(),
+    },
+    hideWeekNames: Boolean,
   },
   components: {
     Month,
+    Year,
   },
   data() {
     return {
