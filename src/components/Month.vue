@@ -48,18 +48,21 @@ export default {
         let row = []
         for (let j = 0; j < 7; j++) {
           const selectedYearDay = this.selectedMonthDate.date(date).dayOfYear()
+          const eventsCount = this.eventsDays?.[this.selectedMonthDate.date(date).format('YYYY-MM-DD')]
           const dayOptions = {
             style: '',
-            date: this.selectedMonthDate.date(date).format('ddd, MMM D, YYYY'),
+            date: `${
+              eventsCount ? (+eventsCount === 1 ? eventsCount + ' event on ' : eventsCount + ' events on ') : ''
+            }${this.selectedMonthDate.date(date).format('ddd, MMM D, YYYY')}`,
           }
           if (i === 0 && j < firstDay) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
           } else if (curentYearDay === selectedYearDay) {
             if (this.yearNumber === this.dayjs().year()) {
-              dayOptions.style = `${this.calcColor(date)} border: 1px solid black; border-radius: 4px;`
+              dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
             } else {
-              dayOptions.style = this.calcColor(date)
+              dayOptions.style = this.calcColor(eventsCount)
             }
             date++
           } else if (date > daysInMonth) {
@@ -67,10 +70,10 @@ export default {
             dayOptions.date = null
             date++
           } else if (curentYearDay > selectedYearDay) {
-            dayOptions.style = this.calcColor(date)
+            dayOptions.style = this.calcColor(eventsCount)
             date++
           } else if (curentYearDay < selectedYearDay) {
-            dayOptions.style = this.calcColor(date, true)
+            dayOptions.style = this.calcColor(eventsCount, true)
             date++
           }
           row.push(dayOptions)
@@ -84,15 +87,13 @@ export default {
     },
   },
   methods: {
-    calcColor(date, isFuture) {
-      const eventCount =
-        this.eventsDays?.[this.dayjs().year(this.yearNumber).month(this.monthNumber).date(date).format('YYYY-MM-DD')]
+    calcColor(eventsCount, isFuture) {
       let color = '#f3f3f3;'
-      if (eventCount === 1) {
+      if (eventsCount === 1) {
         color = isFuture ? this.futureEventColors[0] : this.pastEventsColors[0]
-      } else if (eventCount === 2) {
+      } else if (eventsCount === 2) {
         color = isFuture ? this.futureEventColors[1] : this.pastEventsColors[1]
-      } else if (eventCount > 2) {
+      } else if (eventsCount > 2) {
         color = isFuture ? this.futureEventColors[2] : this.pastEventsColors[2]
       }
       return `background-color: ${color};`

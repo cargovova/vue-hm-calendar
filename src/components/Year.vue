@@ -113,24 +113,28 @@ export default {
       for (let i = 0; i <= weeksInYear + 1; i++) {
         const week = []
         for (let j = 0; j < 7; j++) {
+          const dateDate = this.dayjs().year(this.yearNumber).dayOfYear(date)
+          const eventsCount = this.eventsDays?.[dateDate.format('YYYY-MM-DD')]
           const dayOptions = {
             style: '',
-            date: this.dayjs().dayOfYear(date),
+            date: `${
+              eventsCount ? (+eventsCount === 1 ? eventsCount + ' event on ' : eventsCount + ' events on ') : ''
+            }${dateDate.format('ddd, MMM D, YYYY')}`,
           }
           if (i === 0 && j < this.firstDay) {
           } else if (date === selectedDayOfYear) {
-            dayOptions.style = `${this.calcColor(date)} border: 1px solid black; border-radius: 4px;`
+            dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
             date++
           } else if (date === this.lastYearDay.dayOfYear()) {
-            dayOptions.style = this.calcColor(date)
+            dayOptions.style = this.calcColor(eventsCount)
             date++
           } else if (date > this.lastYearDay.dayOfYear()) {
             break
           } else if (date > selectedDayOfYear) {
-            dayOptions.style = this.calcColor(date, true)
+            dayOptions.style = this.calcColor(eventsCount, true)
             date++
           } else {
-            dayOptions.style = this.calcColor(date)
+            dayOptions.style = this.calcColor(eventsCount)
             date++
           }
           if (i === 0) {
@@ -147,14 +151,13 @@ export default {
     },
   },
   methods: {
-    calcColor(date, isFuture) {
-      const eventCount = this.eventsDays?.[this.dayjs().year(this.yearNumber).dayOfYear(date).format('YYYY-MM-DD')]
+    calcColor(eventsCount, isFuture) {
       let color = '#f3f3f3;'
-      if (eventCount === 1) {
+      if (eventsCount === 1) {
         color = isFuture ? this.futureEventColors[0] : this.pastEventsColors[0]
-      } else if (eventCount === 2) {
+      } else if (eventsCount === 2) {
         color = isFuture ? this.futureEventColors[1] : this.pastEventsColors[1]
-      } else if (eventCount > 2) {
+      } else if (eventsCount > 2) {
         color = isFuture ? this.futureEventColors[2] : this.pastEventsColors[2]
       }
       return `background-color: ${color};`
