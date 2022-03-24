@@ -26,8 +26,8 @@ Vue.use(VueHmCalendar)
 
 In a Vue component in a template use
 
-```
-<vue-hm-calendar props/>
+```html
+<vue-hm-calendar />
 ```
 
 ## Props
@@ -36,11 +36,13 @@ In a Vue component in a template use
 
 **mode**
 
-**_⚠️ You have to setup a mode_**
+_Type_: String - `month | year`
 
-_Type_: String - `month | year` - _required_
+_Description_: The mode of month setted as default.
 
-_Example_ `mode="month"`
+```html
+<vue-hm-calendar mode="month" />
+```
 
 **hideHeader** - `true | false`
 
@@ -48,17 +50,21 @@ _Type_: Boolean
 
 _Description_: Hide a header of a calendar.
 
-_Example_ `:hideHeader="true"`
+```html
+<vue-hm-calendar :hideHeader="true" />
+```
 
 **firstWeekDay** - `monday, saturday`
 
 _Type_: String
 
-_Example_ `firstWeekDay="monday"`
-
 _Default_: `sunday`
 
 _Description_: Only a monday or a saturday.
+
+```html
+<vue-hm-calendar firstWeekDay="monday" />
+```
 
 **pastEventsColors** - `HEX, rgb(), rgba()`
 
@@ -66,17 +72,21 @@ _Type_: Array
 
 _Description_: Colors for heatmaping. For one, two, three and more events in the past. Colors for future events not change.
 
-_Example_ `:pastEventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
-
 _Default_: `:pastEventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
 
-**cellSize** - `1px; | 20% | 1rem`
+```html
+<vue-hm-calendar :pastEventsColors="['#66BB6A', '#388E3C', '#1B5E20']" />
+```
+
+**cellSize** - `1px; | 20% | 1rem` />
 
 _Type_: String
 
 _Description_: The CSS width and height property of a cell.
 
-_Example_ `cellSize="30px"`
+```html
+<vue-hm-calendar cellSize="30px" />
+```
 
 **eventsDays** - `{ '2022-02-01': 1, ... }`
 
@@ -84,13 +94,17 @@ _Type_: Object
 
 _Description_: Property names is dates of the month(1,2,3...), values is a count of events.
 
-_Example_ `:eventsDays={ '2022-02-01': 1, '2022-02-02': 2 }`
+```html
+<vue-hm-calendar :eventsDays={ '2022-02-01': 1, '2022-02-02': 2 } />
+```
 
 **yearNumber** - `2022`
 
 _Type_: Number
 
-_Example_ `:yearNumber="2022"`
+```html
+<vue-hm-calendar :yearNumber="2022" />
+```
 
 ### For the month mode
 
@@ -98,7 +112,9 @@ _Example_ `:yearNumber="2022"`
 
 _Type_: Number
 
-_Example_ `:monthNumber="1"`
+```html
+<vue-hm-calendar :monthNumber="1" />
+```
 
 ### For the year mode
 
@@ -106,4 +122,6 @@ _Example_ `:monthNumber="1"`
 
 _Type_: Boolean `true | false`
 
-_Example_ `:hideWeekNames="true"`
+```html
+<vue-hm-calendar `:hideWeekNames="true"
+```

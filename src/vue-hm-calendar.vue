@@ -1,7 +1,7 @@
 <template>
   <div>
     <month
-      v-if="mode === 'month'"
+      v-if="mode === 'month' || !mode"
       :dayjs="dayjs"
       :hideHeader="hideHeader"
       :firstWeekDay="firstWeekDay"
@@ -41,7 +41,6 @@ export default {
       validator: function (value) {
         return ['month', 'year'].includes(value)
       },
-      required: true,
     },
     hideHeader: Boolean,
     firstWeekDay: {
