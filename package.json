@@ -1,6 +1,6 @@
 {
   "name": "vue-hm-calendar",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "It is a Vue component to create a calendar heatmap",
   "main": "dist/vue-hm-calendar.ssr.js",
   "browser": "dist/vue-hm-calendar.esm.js",
