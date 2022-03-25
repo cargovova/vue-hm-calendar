@@ -124,6 +124,7 @@ export default {
             dayOfYear: date,
           }
           if (i === 0 && j < this.firstDay) {
+            dayOptions.date = null
           } else if (date === selectedDayOfYear) {
             dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
             date++
