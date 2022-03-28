@@ -66,7 +66,7 @@ export default {
     yearNumber: {
       type: Number,
       validator: function (value) {
-        return /^[0-9]{4}$/.test(value.toString())
+        return /^[0-9]{1}|[0-9]{2}|[0-9]{3}|[0-9]{4}$/.test(value.toString())
       },
       default: dayjs().year(),
     },

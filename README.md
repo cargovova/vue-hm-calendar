@@ -6,15 +6,15 @@
 
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://v2.vuejs.org/)
 
-# Installation
+# Getting started
+
+1. Install the plugin:
 
 ```
 npm i --save vue-hm-calendar
 ```
 
-## Default import
-
-Global Install:
+2. Add the plugin into your app:
 
 ```javascript
 import Vue from 'vue'
@@ -22,15 +22,13 @@ import VueHmCalendar from 'vue-hm-calendar'
 Vue.use(VueHmCalendar)
 ```
 
-# Usage
-
-In a Vue component in a template use
+3. Use the `vue-hm-calendar` component:
 
 ```html
 <vue-hm-calendar />
 ```
 
-## Props
+## Props:
 
 ### Common
 
@@ -95,7 +93,7 @@ _Type_: Object
 _Description_: Property names is dates of the month(1,2,3...), values is a count of events.
 
 ```html
-<vue-hm-calendar :eventsDays={ '2022-02-01': 1, '2022-02-02': 2 } />
+<vue-hm-calendar :eventsDays="{ '2022-02-01': 1, '2022-02-02': 2 }" />
 ```
 
 **yearNumber** - `2022`
