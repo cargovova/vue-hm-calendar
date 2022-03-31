@@ -3,17 +3,15 @@
     <div v-if="!hideHeader" style="text-align: center" v-html="selectedMonthDate.format('MMM')"></div>
     <div style="display: flex; flex-direction: row" v-for="(week, i) in month" :key="i">
       <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
-        <day :cellStyle="cellStyle" :day="day" />
+        <div :style="cellStyle + day.style" :title="day.date"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Day from './Day.vue'
 export default {
   name: 'Month',
-  components: { Day },
   props: {
     dayjs: {
       type: Function,
@@ -53,9 +51,9 @@ export default {
           const eventsCount = this.eventsDays?.[this.selectedMonthDate.date(date).format('YYYY-MM-DD')]
           const dayOptions = {
             style: '',
-            date: this.selectedMonthDate.date(date),
-            eventsCount: eventsCount,
-            monthWeekday: j,
+            date: `${
+              eventsCount ? (+eventsCount === 1 ? eventsCount + ' event on ' : eventsCount + ' events on ') : ''
+            }${this.selectedMonthDate.date(date).format('ddd, MMM D, YYYY')}`,
           }
           if (i === 0 && j < firstDay) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'

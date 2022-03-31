@@ -26,7 +26,7 @@
       <div style="display: flex; flex-direction: row">
         <div v-for="(week, i) in year" :key="i">
           <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
-            <day :cellStyle="cellStyle" :day="day" />
+            <div :style="cellStyle + day.style" :title="day.date"></div>
           </div>
         </div>
       </div>
@@ -35,10 +35,8 @@
 </template>
 
 <script>
-import Day from './Day.vue'
 export default {
   name: 'Year',
-  components: { Day },
   props: {
     dayjs: {
       type: Function,
@@ -119,9 +117,9 @@ export default {
           const eventsCount = this.eventsDays?.[dateDate.format('YYYY-MM-DD')]
           const dayOptions = {
             style: '',
-            date: dateDate,
-            eventsCount: eventsCount,
-            dayOfYear: date,
+            date: `${
+              eventsCount ? (+eventsCount === 1 ? eventsCount + ' event on ' : eventsCount + ' events on ') : ''
+            }${dateDate.format('ddd, MMM D, YYYY')}`,
           }
           if (i === 0 && j < this.firstDay) {
             dayOptions.date = null

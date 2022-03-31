@@ -28,7 +28,9 @@ Vue.use(VueHmCalendar)
 <vue-hm-calendar />
 ```
 
-## Props:
+### Demo: https://codesandbox.io/s/vue-hm-calendar-ri8juy
+
+# Props:
 
 ### Common
 
