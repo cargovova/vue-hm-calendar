@@ -73,12 +73,24 @@ _Description_: Only a monday or a saturday.
 
 _Type_: Array
 
-_Description_: Colors for heatmaping. For one, two, three and more events in the past. Colors for future events not change.
+_Description_: Colors for heatmaping. For one, two, three and more events in the past.
 
 _Default_: `:pastEventsColors="['#66BB6A', '#388E3C', '#1B5E20']"`
 
 ```html
 <vue-hm-calendar :pastEventsColors="['#66BB6A', '#388E3C', '#1B5E20']" />
+```
+
+**futureEventsColors** - `HEX, rgb(), rgba()`
+
+_Type_: Array
+
+_Description_: Colors for heatmaping. For one, two, three and more events in the future.
+
+_Default_: `:futureEventsColors="['#BDBDBD', '#616161', '#212121']"`
+
+```html
+<vue-hm-calendar :futureEventsColors="['#BDBDBD', '#616161', '#212121']" />
 ```
 
 **cellSize** - `1px; | 20% | 1rem` />
