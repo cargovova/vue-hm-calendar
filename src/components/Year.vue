@@ -54,7 +54,7 @@ export default {
     cellSize: String,
     yearNumber: Number,
     hideWeekNames: Boolean,
-    futureEventColors: Array,
+    futureEventsColors: Array,
   },
   data() {
     return {
@@ -160,11 +160,11 @@ export default {
     calcColor(eventsCount, isFuture) {
       let color = '#f3f3f3;'
       if (eventsCount === 1) {
-        color = isFuture ? this.futureEventColors[0] : this.pastEventsColors[0]
+        color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
       } else if (eventsCount === 2) {
-        color = isFuture ? this.futureEventColors[1] : this.pastEventsColors[1]
+        color = isFuture ? this.futureEventsColors[1] : this.pastEventsColors[1]
       } else if (eventsCount > 2) {
-        color = isFuture ? this.futureEventColors[2] : this.pastEventsColors[2]
+        color = isFuture ? this.futureEventsColors[2] : this.pastEventsColors[2]
       }
       return `background-color: ${color};`
     },

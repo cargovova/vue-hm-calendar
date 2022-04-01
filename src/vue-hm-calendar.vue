@@ -10,7 +10,7 @@
       :pastEventsColors="pastEventsColors"
       :cellSize="cellSize"
       :yearNumber="yearNumber"
-      :futureEventColors="futureEventColors"
+      :futureEventsColors="futureEventsColors"
     />
     <year
       v-if="mode === 'year'"
@@ -22,7 +22,7 @@
       :yearNumber="yearNumber"
       :firstWeekDay="firstWeekDay"
       :hideHeader="hideHeader"
-      :futureEventColors="futureEventColors"
+      :futureEventsColors="futureEventsColors"
     />
   </div>
 </template>
@@ -62,6 +62,12 @@ export default {
         return ['#66BB6A', '#388E3C', '#1B5E20']
       },
     },
+    futureEventsColors: {
+      type: Array,
+      default: function () {
+        return ['#BDBDBD', '#616161', '#212121']
+      },
+    },
     cellSize: String,
     yearNumber: {
       type: Number,
@@ -79,7 +85,6 @@ export default {
   data() {
     return {
       dayjs: dayjs,
-      futureEventColors: ['#BDBDBD', '#616161', '#212121'],
     }
   },
 }
