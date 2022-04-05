@@ -106,12 +106,12 @@ describe('Month.vue Implementation Test', () => {
 
   it('should be correct size of cell', () => {
     expect(wrapper.vm.cellStyle).toBe('width: 30px; height: 30px; box-sizing: border-box;')
-    wrapper.findAll('tooltip-stub').wrappers.forEach(wr => {
+    wrapper.findAll('day-stub').wrappers.forEach(wr => {
       expect(wr.attributes('cellstyle')).toBe('width: 30px; height: 30px; box-sizing: border-box;')
     })
   })
 
   it('count of days should be eq 42', () => {
-    expect(wrapper.findAll('tooltip-stub').length).toEqual(42)
+    expect(wrapper.findAll('day-stub').length).toEqual(42)
   })
 })
