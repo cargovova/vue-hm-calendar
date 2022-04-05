@@ -2,20 +2,18 @@
   <div style="display: inline-block">
     <div v-if="!hideHeader" class="header" v-html="selectedMonthDate.format('MMM')"></div>
     <div style="display: flex; flex-direction: row" v-for="(week, i) in month" :key="i">
-      <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
-        <tooltip :cellStyle="cellStyle" :day="day" />
-      </div>
+      <day v-for="(day, i) in week" :key="i" :cellStyle="cellStyle" :day="day"> </day>
     </div>
   </div>
 </template>
 
 <script>
-import Tooltip from './Tooltip.vue'
+import Day from './Day.vue'
 
 export default {
   name: 'Month',
   components: {
-    Tooltip,
+    Day,
   },
   props: {
     dayjs: {

@@ -25,9 +25,7 @@
       </div>
       <div style="display: flex; flex-direction: row">
         <div v-for="(week, i) in year" :key="i">
-          <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
-            <tooltip :cellStyle="cellStyle" :day="day" />
-          </div>
+          <day v-for="(day, i) in week" :key="i" :cellStyle="cellStyle" :day="day"> </day>
         </div>
       </div>
     </div>
@@ -35,12 +33,12 @@
 </template>
 
 <script>
-import Tooltip from './Tooltip.vue'
+import Day from './Day.vue'
 
 export default {
   name: 'Year',
   components: {
-    Tooltip,
+    Day,
   },
   props: {
     dayjs: {
