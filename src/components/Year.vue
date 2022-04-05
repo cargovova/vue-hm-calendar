@@ -122,7 +122,7 @@ export default {
           const eventsCount = this.eventsDays?.[dateDate.format('YYYY-MM-DD')]
           const dayOptions = {
             style: '',
-            date: dateDate,
+            date: dateDate.format('ddd, MMM D, YYYY'),
             eventsCount: eventsCount,
             dayOfYear: date,
           }
@@ -158,7 +158,7 @@ export default {
   },
   methods: {
     calcColor(eventsCount, isFuture) {
-      let color = '#f3f3f3;'
+      let color = '#f3f3f3'
       if (eventsCount === 1) {
         color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
       } else if (eventsCount === 2) {

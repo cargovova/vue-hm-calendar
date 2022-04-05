@@ -19,7 +19,7 @@ export default {
             ? this.day.eventsCount + ' event on <br/>'
             : this.day.eventsCount + ' events on <br/>'
           : ''
-      }${this.day.date?.format('ddd, MMM D, YYYY')}`
+      }${this.day.date}`
     },
     tooltipClass() {
       if (this.day.dayOfYear > 309) {

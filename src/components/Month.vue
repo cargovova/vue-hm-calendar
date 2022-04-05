@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block">
-    <div v-if="!hideHeader" style="text-align: center" v-html="selectedMonthDate.format('MMM')"></div>
+    <div v-if="!hideHeader" class="header" v-html="selectedMonthDate.format('MMM')"></div>
     <div style="display: flex; flex-direction: row" v-for="(week, i) in month" :key="i">
       <div style="padding: 0.125rem" v-for="(day, i) in week" :key="i">
         <tooltip :cellStyle="cellStyle" :day="day" />
@@ -56,20 +56,13 @@ export default {
           const eventsCount = this.eventsDays?.[this.selectedMonthDate.date(date).format('YYYY-MM-DD')]
           const dayOptions = {
             style: '',
-            date: this.selectedMonthDate.date(date),
+            date: this.selectedMonthDate.date(date).format('ddd, MMM D, YYYY'),
             eventsCount: eventsCount,
             monthWeekday: j,
           }
           if (i === 0 && j < firstDay) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
-          } else if (curentYearDay === selectedYearDay) {
-            if (this.yearNumber === this.dayjs().year()) {
-              dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
-            } else {
-              dayOptions.style = this.calcColor(eventsCount)
-            }
-            date++
           } else if (date > daysInMonth) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
@@ -79,6 +72,13 @@ export default {
             date++
           } else if (curentYearDay < selectedYearDay) {
             dayOptions.style = this.calcColor(eventsCount, true)
+            date++
+          } else if (curentYearDay === selectedYearDay) {
+            if (this.yearNumber === this.dayjs().year()) {
+              dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
+            } else {
+              dayOptions.style = this.calcColor(eventsCount)
+            }
             date++
           }
           row.push(dayOptions)
@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     calcColor(eventsCount, isFuture) {
-      let color = '#f3f3f3;'
+      let color = '#f3f3f3'
       if (eventsCount === 1) {
         color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
       } else if (eventsCount === 2) {
@@ -106,3 +106,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.header {
+  text-align: center;
+}
+</style>
