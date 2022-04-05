@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 0.125rem">
-    <div :style="cellStyle + day.style" class="tooltip hovered">
+    <div :style="cellStyle + day.style" class="tooltip" :class="{ hovered: day.date }">
       <span v-if="day.date" :class="tooltipClass" class="tooltiptext" v-html="text"></span>
     </div>
   </div>
