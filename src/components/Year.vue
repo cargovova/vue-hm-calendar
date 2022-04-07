@@ -9,10 +9,7 @@
       </div>
     </div>
     <div>
-      <div
-        v-if="!hideHeader"
-        style="display: inline-block; display: flex; flex-direction: row; justify-content: space-between"
-      >
+      <div v-if="!hideHeader" class="header">
         <div v-for="i in 12" :key="i">
           <span v-if="i === 1">&nbsp;&nbsp;&nbsp;</span>
           {{
@@ -169,3 +166,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.header {
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+</style>

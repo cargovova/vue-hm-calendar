@@ -6,5 +6,6 @@
   "printWidth": 120,
   "proseWrap": "preserve",
   "arrowParens": "avoid",
-  "semi": false
+  "semi": false,
+  "endOfLine": "auto"
 }
