@@ -36,7 +36,7 @@ const setDay = dayIncrement => {
 }
 
 describe('Month.vue Implementation Test', () => {
-  const { yearNumber, monthNumber, yyyy_mm_dd, shortWeekday, shortMonth, dayNumber, weekdayNumber } = setDay()
+  const { yearNumber, monthNumber } = setDay()
 
   const firstMonthDay = setDay('first')
   const lastMonthDay = setDay('last')

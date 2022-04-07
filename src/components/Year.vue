@@ -36,7 +36,7 @@
 import Day from './Day.vue'
 
 export default {
-  name: 'Year',
+  name: 'OneYear',
   components: {
     Day,
   },

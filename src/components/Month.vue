@@ -11,7 +11,7 @@
 import Day from './Day.vue'
 
 export default {
-  name: 'Month',
+  name: 'OneMonth',
   components: {
     Day,
   },

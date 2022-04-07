@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'Day',
+  name: 'DayItem',
   props: {
     cellStyle: String,
     day: Object,
@@ -24,12 +24,14 @@ export default {
       }${this.day.date}`
     },
     tooltipClass() {
+      let className = ''
       if (this.day.dayOfYear > 309) {
-        return 'from_left_hand'
+        className = 'from_left_hand'
       }
       if (this.day?.monthWeekday || this.day?.monthWeekday === 0) {
-        return 'day' + this.day.monthWeekday
+        className = 'day' + this.day.monthWeekday
       }
+      return className
     },
   },
 }
