@@ -6,8 +6,10 @@
 
 <img src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/tooltip.png" alt="">
 
+[![cargovova](https://img.shields.io/badge/cargovova-brightgreen)](https://github.com/cargovova)
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://v2.vuejs.org/)
 [![vue-hm-calendar](https://img.shields.io/badge/vue--hm--calendar-v2-green)](https://www.npmjs.com/package/vue-hm-calendar)
+[![Coverage Status](https://coveralls.io/repos/github/cargovova/vue-hm-calendar/badge.svg?branch=master)](https://coveralls.io/github/cargovova/vue-hm-calendar?branch=master)
 
 # Getting started
 
