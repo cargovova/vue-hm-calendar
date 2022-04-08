@@ -20,7 +20,7 @@
   "repository": {
     "repository": {
       "type": "git",
-      "url": "https://github.com/cargovova/vue-hm-calendar"
+      "url": "git+https://github.com/cargovova/vue-hm-calendar"
     }
   },
   "bugs": {
