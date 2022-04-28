@@ -37,6 +37,21 @@ Vue.use(VueHmCalendar)
 
 # Props:
 
+### Short description
+
+| Props                            | Type      | Value                       |
+| -------------------------------- | --------- | --------------------------- |
+| mode                             | _String_  | `'month' \| 'year'`         |
+| hideHeader                       | _Boolean_ | `true \| false`             |
+| firstWeekDay                     | _String_  | `'monday', 'saturday'`      |
+| pastEventsColors                 | _Array_   | `[HEX, rgb(), rgba()]`      |
+| futureEventsColors               | _Array_   | `[HEX, rgb(), rgba()]`      |
+| cellSize                         | _String_  | `'1px;' \| '20%' \| '1rem'` |
+| eventsDays                       | _Object_  | `{ '2022-02-01': 1, ... }`  |
+| yearNumber                       | _Number_  | `2022`                      |
+| monthNumber (`only month mode`)  | _Number_  | `0-11`                      |
+| hideWeekNames (`only year mode`) | _Boolean_ | `true \| false`             |
+
 ### Common
 
 **mode**

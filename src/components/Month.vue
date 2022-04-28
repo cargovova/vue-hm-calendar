@@ -33,18 +33,29 @@ export default {
     selectedMonthDate() {
       return this.dayjs().year(this.yearNumber).month(this.monthNumber).date(1)
     },
-    month() {
-      const curentYearDay = this.dayjs().dayOfYear()
-      const daysInMonth = this.selectedMonthDate.daysInMonth()
+    firstDay() {
       let firstDay = this.selectedMonthDate.day()
       switch (this.firstWeekDay) {
         case 'monday':
-          firstDay--
+          if (firstDay === 0) {
+            firstDay = 6
+          } else {
+            firstDay--
+          }
           break
         case 'saturday':
-          firstDay++
+          if (firstDay === 6) {
+            firstDay = 0
+          } else {
+            firstDay++
+          }
           break
       }
+      return firstDay
+    },
+    month() {
+      const curentYearDay = this.dayjs().dayOfYear()
+      const daysInMonth = this.selectedMonthDate.daysInMonth()
       let date = 1
       const month = []
       for (let i = 0; i < 6; i++) {
@@ -58,7 +69,7 @@ export default {
             eventsCount: eventsCount,
             monthWeekday: j,
           }
-          if (i === 0 && j < firstDay) {
+          if (i === 0 && j < this.firstDay) {
             dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
             dayOptions.date = null
           } else if (date > daysInMonth) {

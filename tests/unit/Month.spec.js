@@ -177,6 +177,44 @@ describe('Month.vue Implementation Test', () => {
     expect(concatMonth[dayIndex - 3].style === 'background-color: #1B5E20;').toBeTruthy()
     expect(concatMonth[dayIndex + 1].style === 'background-color: #BDBDBD;').toBeTruthy()
     expect(concatMonth[dayIndex + 2].style === 'background-color: #616161;').toBeTruthy()
-    expect(concatMonth[dayIndex + 3].style === 'background-color: #212121;').toBeTruthy()
+    if (firstFuture.dayNumber === 1) {
+      expect(concatMonth[dayIndex + 1].style === 'background-color: rgba(0,0,0,0.0)').toBeTruthy()
+    } else {
+      expect(concatMonth[dayIndex + 1].style === 'background-color: #BDBDBD;').toBeTruthy()
+    }
+    if (secondFuture.dayNumber > 0 && secondFuture.dayNumber < 2) {
+      expect(concatMonth[dayIndex + 2].style === 'background-color: rgba(0,0,0,0.0)').toBeTruthy()
+    } else {
+      expect(concatMonth[dayIndex + 2].style === 'background-color: #616161;').toBeTruthy()
+    }
+    if (thirdFuture.dayNumber > 0 && thirdFuture.dayNumber < 3) {
+      expect(concatMonth[dayIndex + 3].style === 'background-color: rgba(0,0,0,0.0)').toBeTruthy()
+    } else {
+      expect(concatMonth[dayIndex + 3].style === 'background-color: #212121;').toBeTruthy()
+    }
+  })
+
+  it('firstDay is 6', () => {
+    const intWrapper = shallowMount(Month, {
+      propsData: {
+        dayjs: dayjs,
+        yearNumber: 2022,
+        monthNumber: 4,
+        firstWeekDay: 'monday',
+      },
+    })
+    expect(intWrapper.vm.firstDay === 6).toBeTruthy()
+  })
+
+  it('firstDay is 0', () => {
+    const intWrapper = shallowMount(Month, {
+      propsData: {
+        dayjs: dayjs,
+        yearNumber: 2022,
+        monthNumber: 9,
+        firstWeekDay: 'saturday',
+      },
+    })
+    expect(intWrapper.vm.firstDay === 0).toBeTruthy()
   })
 })
