@@ -175,8 +175,6 @@ describe('Month.vue Implementation Test', () => {
     expect(concatMonth[dayIndex - 1].style === 'background-color: #66BB6A;').toBeTruthy()
     expect(concatMonth[dayIndex - 2].style === 'background-color: #388E3C;').toBeTruthy()
     expect(concatMonth[dayIndex - 3].style === 'background-color: #1B5E20;').toBeTruthy()
-    expect(concatMonth[dayIndex + 1].style === 'background-color: #BDBDBD;').toBeTruthy()
-    expect(concatMonth[dayIndex + 2].style === 'background-color: #616161;').toBeTruthy()
     if (firstFuture.dayNumber === 1) {
       expect(concatMonth[dayIndex + 1].style === 'background-color: rgba(0,0,0,0.0)').toBeTruthy()
     } else {
