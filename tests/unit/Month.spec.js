@@ -124,8 +124,8 @@ describe('Month.vue Implementation Test', () => {
     const intWrapper = shallowMount(Month, {
       propsData: {
         dayjs: dayjs,
-        yearNumber,
-        monthNumber,
+        yearNumber: 2022,
+        monthNumber: 3,
         firstWeekDay: 'monday',
       },
     })
@@ -138,8 +138,8 @@ describe('Month.vue Implementation Test', () => {
     const intWrapper = shallowMount(Month, {
       propsData: {
         dayjs: dayjs,
-        yearNumber,
-        monthNumber,
+        yearNumber: 2022,
+        monthNumber: 3,
         firstWeekDay: 'saturday',
       },
     })
@@ -154,20 +154,7 @@ describe('Month.vue Implementation Test', () => {
     )
   })
 
-  it('should be empty cell for next year', () => {
-    const intWrapper = shallowMount(Month, {
-      propsData: {
-        dayjs: dayjs,
-        yearNumber: 2099,
-        monthNumber,
-      },
-    })
-    expect(intWrapper.vm.month[0][3]).toMatchObject({
-      style: 'background-color: #f3f3f3;',
-    })
-  })
-
-  it('cell should be the specified color', () => {
+  it('cell should be the specified color for curent date', () => {
     const dayIndex = firstMonthDay.weekdayNumber + firstPast.dayNumber
     expect(
       concatMonth[dayIndex].style === 'background-color: #f3f3f3; border: 1px solid black; border-radius: 4px;'

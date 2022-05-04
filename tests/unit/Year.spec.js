@@ -9,16 +9,16 @@ const setDay = dayIncrement => {
   let monthDay = 0
   switch (dayIncrement) {
     case 'first':
-      monthDay = 1
+      day = new Date(day.getFullYear(), 0, 1)
       break
     case 'last':
-      monthDay = new Date(day.getFullYear(), 11, 31).getDate()
+      day = new Date(day.getFullYear(), 11, 31)
       break
     default:
       monthDay = day.getDate() + (dayIncrement || 0)
+      day.setDate(monthDay)
       break
   }
-  day.setDate(monthDay)
   const yearNumber = day.getFullYear()
   const monthNumber = day.getMonth()
   const dayNumber = day.getDate()

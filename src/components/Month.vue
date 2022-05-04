@@ -85,8 +85,6 @@ export default {
           } else if (curentYearDay === selectedYearDay) {
             if (this.yearNumber === this.dayjs().year()) {
               dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
-            } else {
-              dayOptions.style = this.calcColor(eventsCount)
             }
             date++
           }
