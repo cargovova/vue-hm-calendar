@@ -96,7 +96,7 @@ export default {
   },
   created() {
     if (this.locale) {
-      import('dayjs/locale/' + this.locale)
+      import(`dayjs/locale/${this.locale}.js`)
         .then(() => {
           dayjs.locale(this.locale)
         })

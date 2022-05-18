@@ -55,7 +55,7 @@ Vue.use(VueHmCalendar)
 | monthNumber (`only month mode`)  | _Number_  | `0-11`                               |
 | hideWeekNames (`only year mode`) | _Boolean_ | `true \| false`                      |
 | locale                           | _String_  | `'en' \| 'de' \| 'ru'`               |
-| tooltipTranslation="событий:"    | _String_  | `'veranstaltungen:' \| 'событий:'`   |
+| tooltipTranslation               | _String_  | `'veranstaltungen:' \| 'событий:'`   |
 
 ### Common
 
