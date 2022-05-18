@@ -11,6 +11,11 @@ describe('Day.vue tests', () => {
           date: null,
         },
       },
+      provide: {
+        $tooltipTranslation() {
+          return ''
+        },
+      },
     })
     expect(wrapper.find('span').exists()).toBeFalsy()
   })
@@ -21,6 +26,11 @@ describe('Day.vue tests', () => {
         cellStyle: 'width: 30px; height: 30px; box-sizing: border-box;',
         day: {
           date: 'Sat, Jan 1, 2022',
+        },
+      },
+      provide: {
+        $tooltipTranslation() {
+          return ''
         },
       },
     })
@@ -34,6 +44,11 @@ describe('Day.vue tests', () => {
         cellStyle: 'width: 30px; height: 30px; box-sizing: border-box;',
         day: { style: 'background-color: #1B5E20;', date: 'Mon, Apr 4, 2022', eventsCount: 3, monthWeekday: 0 },
       },
+      provide: {
+        $tooltipTranslation() {
+          return ''
+        },
+      },
     })
     expect(wrapper.vm.text).toBe('3 events on <br/>Mon, Apr 4, 2022')
   })
@@ -43,6 +58,11 @@ describe('Day.vue tests', () => {
       propsData: {
         cellStyle: 'width: 30px; height: 30px; box-sizing: border-box;',
         day: { style: 'background-color: #66BB6A;', date: 'Wed, Apr 6, 2022', eventsCount: 1, monthWeekday: 2 },
+      },
+      provide: {
+        $tooltipTranslation() {
+          return ''
+        },
       },
     })
     expect(wrapper.vm.text).toBe('1 event on <br/>Wed, Apr 6, 2022')
@@ -59,7 +79,27 @@ describe('Day.vue tests', () => {
           dayOfYear: 360,
         },
       },
+      provide: {
+        $tooltipTranslation() {
+          return ''
+        },
+      },
     })
     expect(wrapper.vm.tooltipClass).toBe('from_left_hand')
+  })
+
+  it('first tooltip line should be setted from props', () => {
+    const wrapper = shallowMount(Day, {
+      propsData: {
+        cellStyle: 'width: 30px; height: 30px; box-sizing: border-box;',
+        day: { style: 'background-color: #66BB6A;', date: 'Wed, Apr 6, 2022', eventsCount: 1, monthWeekday: 2 },
+      },
+      provide: {
+        $tooltipTranslation() {
+          return 'событий:'
+        },
+      },
+    })
+    expect(wrapper.vm.text).toBe('событий: 1<br/>Wed, Apr 6, 2022')
   })
 })

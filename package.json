@@ -1,6 +1,6 @@
 {
   "name": "vue-hm-calendar",
-  "version": "2.0.12",
+  "version": "2.1.0",
   "description": "It is a Vue component to create a calendar heatmap",
   "main": "dist/vue-hm-calendar.ssr.js",
   "browser": "dist/vue-hm-calendar.esm.js",
@@ -39,7 +39,7 @@
     "lint": "vue-cli-service lint src"
   },
   "dependencies": {
-    "dayjs": "1.11.0"
+    "dayjs": "^1.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

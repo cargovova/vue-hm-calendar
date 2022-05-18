@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="dayjs">
     <month
       v-if="mode === 'month' || !mode"
       :dayjs="dayjs"
@@ -77,6 +77,8 @@ export default {
       default: dayjs().year(),
     },
     hideWeekNames: Boolean,
+    locale: String,
+    tooltipTranslation: String,
   },
   components: {
     Month,
@@ -84,7 +86,28 @@ export default {
   },
   data() {
     return {
-      dayjs: dayjs,
+      dayjs: null,
+    }
+  },
+  provide() {
+    return {
+      $tooltipTranslation: () => this.tooltipTranslation,
+    }
+  },
+  created() {
+    if (this.locale) {
+      import('dayjs/locale/' + this.locale)
+        .then(() => {
+          dayjs.locale(this.locale)
+        })
+        .catch(e => {
+          console.warn('locale not found', e)
+        })
+        .finally(() => {
+          this.dayjs = dayjs
+        })
+    } else {
+      this.dayjs = dayjs
     }
   },
 }

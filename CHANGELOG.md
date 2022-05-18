@@ -2,6 +2,12 @@
 
 Notable changes to this project will be documented in this file.
 
+## 2.1.0 (2022-05-18)
+
+### Features
+
+- added internationalization
+
 ## 2.0.7 (2022-04-08)
 
 ### Features

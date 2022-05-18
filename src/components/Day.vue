@@ -13,8 +13,12 @@ export default {
     cellStyle: String,
     day: Object,
   },
+  inject: ['$tooltipTranslation'],
   computed: {
     text() {
+      if (this.$tooltipTranslation() && this.day.eventsCount) {
+        return `${this.$tooltipTranslation()} ${this.day.eventsCount}<br/>${this.day.date}`
+      }
       return `${
         this.day.eventsCount
           ? +this.day.eventsCount === 1

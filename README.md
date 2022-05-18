@@ -39,18 +39,20 @@ Vue.use(VueHmCalendar)
 
 ### Short description
 
-| Props                            | Type      | Value                       |
-| -------------------------------- | --------- | --------------------------- |
-| mode                             | _String_  | `'month' \| 'year'`         |
-| hideHeader                       | _Boolean_ | `true \| false`             |
-| firstWeekDay                     | _String_  | `'monday', 'saturday'`      |
-| pastEventsColors                 | _Array_   | `[HEX, rgb(), rgba()]`      |
-| futureEventsColors               | _Array_   | `[HEX, rgb(), rgba()]`      |
-| cellSize                         | _String_  | `'1px;' \| '20%' \| '1rem'` |
-| eventsDays                       | _Object_  | `{ '2022-02-01': 1, ... }`  |
-| yearNumber                       | _Number_  | `2022`                      |
-| monthNumber (`only month mode`)  | _Number_  | `0-11`                      |
-| hideWeekNames (`only year mode`) | _Boolean_ | `true \| false`             |
+| Props                            | Type      | Value                                |
+| -------------------------------- | --------- | ------------------------------------ |
+| mode                             | _String_  | `'month' \| 'year'`                  |
+| hideHeader                       | _Boolean_ | `true \| false`                      |
+| firstWeekDay                     | _String_  | `'monday', 'saturday'`               |
+| pastEventsColors (`3 el.`)       | _Array_   | `[HEX \| rgb() \| rgba(), ..., ...]` |
+| futureEventsColors (`3 el.`)     | _Array_   | `[HEX \| rgb() \| rgba(), ..., ...]` |
+| cellSize                         | _String_  | `'1px;' \| '20%' \| '1rem'`          |
+| eventsDays                       | _Object_  | `{ '2022-02-01': 1, ... }`           |
+| yearNumber                       | _Number_  | `2022`                               |
+| monthNumber (`only month mode`)  | _Number_  | `0-11`                               |
+| hideWeekNames (`only year mode`) | _Boolean_ | `true \| false`                      |
+| locale                           | _String_  | `'en' \| 'de' \| 'ru'`               |
+| tooltipTranslation="событий:"    | _String_  | `'veranstaltungen:' \| 'событий:'`   |
 
 ### Common
 
@@ -80,7 +82,7 @@ _Type_: String
 
 _Default_: `sunday`
 
-_Description_: Only a monday or a saturday.
+_Description_: Monday or saturday.
 
 ```html
 <vue-hm-calendar firstWeekDay="monday" />
@@ -136,6 +138,26 @@ _Type_: Number
 
 ```html
 <vue-hm-calendar :yearNumber="2022" />
+```
+
+**locale** - `de`
+
+_Type_: String
+
+_Default_: `en`
+
+```html
+<vue-hm-calendar locale="de" />
+```
+
+**tooltipTranslation** - `veranstaltungen:`
+
+_Type_: String
+
+_Description_: Translation of first tooltip line
+
+```html
+<vue-hm-calendar tooltipTranslation="veranstaltungen:" />
 ```
 
 ### For the month mode
