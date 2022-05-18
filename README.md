@@ -4,7 +4,10 @@
 
 <img src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/month.png" alt="">
 
+<div style="display: flex;">
+<img src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/translation.png" alt="">
 <img src="https://github.com/cargovova/vue-hm-calendar/blob/master/screens/tooltip.png" alt="">
+</div>
 
 [![cargovova](https://img.shields.io/badge/cargovova-brightgreen)](https://github.com/cargovova)
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://v2.vuejs.org/)

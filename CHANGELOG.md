@@ -6,7 +6,7 @@ Notable changes to this project will be documented in this file.
 
 ### Features
 
-- added internationalization
+- added internationalization ([832f38a](https://github.com/cargovova/vue-hm-calendar/commit/832f38a))
 
 ## 2.0.7 (2022-04-08)
 
