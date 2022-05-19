@@ -33,6 +33,7 @@ const dayOfYear = require('dayjs/plugin/dayOfYear')
 dayjs.extend(dayOfYear)
 import Month from './components/Month.vue'
 import Year from './components/Year.vue'
+import { dinamicLoader } from './dinamicLoader'
 
 export default {
   name: 'VueHmCalendar',
@@ -94,18 +95,9 @@ export default {
       $tooltipTranslation: () => this.tooltipTranslation,
     }
   },
-  created() {
+  async created() {
     if (this.locale) {
-      import(`dayjs/locale/${this.locale}.js`)
-        .then(() => {
-          dayjs.locale(this.locale)
-        })
-        .catch(e => {
-          console.warn('locale not found', e)
-        })
-        .finally(() => {
-          this.dayjs = dayjs
-        })
+      this.dayjs = await dinamicLoader(this.locale, dayjs)
     } else {
       this.dayjs = dayjs
     }

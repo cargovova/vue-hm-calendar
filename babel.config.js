@@ -8,6 +8,9 @@ const buildPresets = [
       // include: [
       //   /(optional-chaining|nullish-coalescing)/
       // ],
+      targets: {
+        node: 'current',
+      },
     },
   ],
 ]
