@@ -29,7 +29,7 @@
 
 <script>
 import dayjs from 'dayjs'
-const dayOfYear = require('dayjs/plugin/dayOfYear')
+import dayOfYear from 'dayjs/plugin/dayOfYear'
 dayjs.extend(dayOfYear)
 import Month from './components/Month.vue'
 import Year from './components/Year.vue'
