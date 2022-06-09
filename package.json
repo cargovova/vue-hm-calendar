@@ -27,7 +27,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "serve": "cd dev && npm run-script dev",
+    "serve": "cd dev && node node_modules\\vite\\bin\\vite.js",
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "test:unit": "vue-cli-service test:unit",
