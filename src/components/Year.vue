@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Day from './Day.vue'
+import Day from './Day'
 
 export default {
   name: 'OneYear',

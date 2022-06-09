@@ -2,11 +2,6 @@
   "name": "dev",
   "private": true,
   "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
-  },
   "dependencies": {
     "vue": "^3.2.25"
   },

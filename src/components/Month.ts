@@ -1,36 +1,30 @@
-<template>
-  <div style="display: inline-block">
-    <div v-if="!hideHeader" class="header" v-html="selectedMonthDate.format('MMM')"></div>
-    <div style="display: flex; flex-direction: row" v-for="(week, i) in month" :key="i">
-      <day v-for="(day, i) in week" :key="i" :cellStyle="cellStyle" :day="day"> </day>
-    </div>
-  </div>
-</template>
+import { Dayjs } from 'dayjs'
+import { defineComponent, h, PropType } from 'vue-demi'
+import Day from './Day'
+import '../main.css'
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
 
-<script>
-import Day from './Day.vue'
-
-export default {
+export default defineComponent({
   name: 'OneMonth',
-  components: {
-    Day,
-  },
+  components: { Day },
   props: {
     dayjs: {
-      type: Function,
+      type: Dayjs,
       required: true,
     },
     monthNumber: Number,
     firstWeekDay: String,
     hideHeader: Boolean,
     eventsDays: Object,
-    pastEventsColors: Array,
+    pastEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
     cellSize: String,
     yearNumber: Number,
-    futureEventsColors: Array,
+    futureEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
   },
   computed: {
-    selectedMonthDate() {
+    selectedMonthDate(): Dayjs {
       return this.dayjs().year(this.yearNumber).month(this.monthNumber).date(1)
     },
     firstDay() {
@@ -63,7 +57,7 @@ export default {
         for (let j = 0; j < 7; j++) {
           const selectedYearDay = this.selectedMonthDate.date(date).dayOfYear()
           const eventsCount = this.eventsDays?.[this.selectedMonthDate.date(date).format('YYYY-MM-DD')]
-          const dayOptions = {
+          const dayOptions: { style: string; date: string | null; eventsCount: number; monthWeekday: number } = {
             style: '',
             date: this.selectedMonthDate.date(date).format('ddd, MMM D, YYYY'),
             eventsCount: eventsCount,
@@ -77,14 +71,14 @@ export default {
             dayOptions.date = null
             date++
           } else if (curentYearDay > selectedYearDay) {
-            dayOptions.style = this.calcColor(eventsCount)
+            dayOptions.style = this.calcColor(eventsCount, false)
             date++
           } else if (curentYearDay < selectedYearDay) {
             dayOptions.style = this.calcColor(eventsCount, true)
             date++
           } else if (curentYearDay === selectedYearDay) {
             if (this.yearNumber === this.dayjs().year()) {
-              dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
+              dayOptions.style = `${this.calcColor(eventsCount, false)} border: 1px solid black; border-radius: 4px;`
             }
             date++
           }
@@ -99,8 +93,8 @@ export default {
     },
   },
   methods: {
-    calcColor(eventsCount, isFuture) {
-      let color = '#f3f3f3'
+    calcColor(eventsCount: number, isFuture: boolean) {
+      let color: string = '#f3f3f3'
       if (eventsCount === 1) {
         color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
       } else if (eventsCount === 2) {
@@ -111,11 +105,18 @@ export default {
       return `background-color: ${color};`
     },
   },
-}
-</script>
-
-<style scoped>
-.header {
-  text-align: center;
-}
-</style>
+  render() {
+    return h('div', { style: { display: 'inline-block' } }, [
+      !this.hideHeader ? h('div', { class: 'header' }, this.selectedMonthDate.format('MMM')) : null,
+      this.month.map(week => {
+        return h(
+          'div',
+          { style: { display: 'flex', 'flex-direction': 'row' } },
+          week.map(day => {
+            return h(Day, { cellStyle: this.cellStyle, day: day })
+          })
+        )
+      }),
+    ])
+  },
+})

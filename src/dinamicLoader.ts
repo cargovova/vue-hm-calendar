@@ -1,4 +1,6 @@
-export const dinamicLoader = async (code, dayjs) => {
+import { Dayjs } from 'dayjs'
+
+export const dinamicLoader = async (code: string, dayjs: Dayjs) => {
   try {
     switch (code) {
       case 'ru':

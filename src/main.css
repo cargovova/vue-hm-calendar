@@ -1,0 +1,57 @@
+.tooltip {
+  position: relative;
+}
+
+.hovered:hover {
+  outline: 3px solid black;
+}
+
+.tooltip .tooltiptext {
+  font-size: 15px;
+  visibility: hidden;
+  width: 130px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px 6px 6px 6px;
+  opacity: 0.8;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 200%;
+}
+
+.from_left_hand {
+  right: 50%;
+}
+
+.day0 {
+  left: 15%;
+}
+
+.day1 {
+  left: -100%;
+}
+
+.day2 {
+  left: -235%;
+}
+
+.day3 {
+  left: -350%;
+}
+
+.day4 {
+  right: -230%;
+}
+.day5 {
+  right: -95%;
+}
+.day6 {
+  right: 25%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import vueHmCalendar from './../../src/entry.esm'
+import vueHmCalendar from '../../src'
 
 const app = createApp(App)
 

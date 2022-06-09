@@ -1,4 +1,4 @@
-import vueHmCalendar from './vue-hm-calendar.vue'
+import vueHmCalendar from './vue-hm-calendar'
 
 export default {
   install: (app: any, options: any) => {
