@@ -6,9 +6,7 @@ dayjs.extend(dayOfYear)
 import Month from './components/Month'
 import Year from './components/Year'
 import { dinamicLoader } from './dinamicLoader'
-type RGB = `rgb(${number}, ${number}, ${number})`
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
-type HEX = `#${string}`
+import { colorType } from './types'
 
 export default defineComponent({
   name: 'VueHmCalendar',
@@ -35,13 +33,13 @@ export default defineComponent({
     },
     eventsDays: Object,
     pastEventsColors: {
-      type: Array as unknown as PropType<RGB | RGBA | HEX>,
+      type: Array as unknown as PropType<colorType>,
       default: () => {
         return ['#66BB6A', '#388E3C', '#1B5E20']
       },
     },
     futureEventsColors: {
-      type: Array as unknown as PropType<RGB | RGBA | HEX>,
+      type: Array as unknown as PropType<colorType>,
       default: () => {
         return ['#BDBDBD', '#616161', '#212121']
       },
@@ -102,10 +100,10 @@ export default defineComponent({
     }
     if (this.dayjs) {
       if (this.mode === 'month' || !this.mode) {
-        return h('div', {}, h(Month, monthProps))
+        return h('div', {}, h(Month as any, monthProps))
       }
       if (this.mode === 'year') {
-        return h('div', {}, h(Year, yearProps))
+        return h('div', {}, h(Year as any, yearProps))
       }
     }
   },

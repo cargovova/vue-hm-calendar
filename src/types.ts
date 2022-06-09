@@ -5,3 +5,9 @@ export interface dayOptions {
   monthWeekday: number
   style: string
 }
+
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
+
+export type colorType = RGB | RGBA | HEX

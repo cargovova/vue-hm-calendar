@@ -2,9 +2,7 @@ import { Dayjs } from 'dayjs'
 import { defineComponent, h, PropType } from 'vue-demi'
 import Day from './Day'
 import '../main.css'
-type RGB = `rgb(${number}, ${number}, ${number})`
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
-type HEX = `#${string}`
+import { colorType } from './../types'
 
 export default defineComponent({
   name: 'OneYear',
@@ -13,17 +11,17 @@ export default defineComponent({
   },
   props: {
     dayjs: {
-      type: Dayjs,
+      type: Function,
       required: true,
     },
     firstWeekDay: String,
     hideHeader: Boolean,
     eventsDays: Object,
-    pastEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
+    pastEventsColors: { type: Array as PropType<colorType[]>, required: true },
     cellSize: String,
-    yearNumber: Number,
+    yearNumber: { type: Number, required: true },
     hideWeekNames: Boolean,
-    futureEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
+    futureEventsColors: { type: Array as PropType<colorType[]>, required: true },
   },
   data() {
     return {
@@ -31,16 +29,16 @@ export default defineComponent({
     }
   },
   computed: {
-    firstYearDay() {
+    firstYearDay(): Dayjs {
       return this.dayjs().year(this.yearNumber).month(0).date(1)
     },
-    lastYearDay() {
+    lastYearDay(): Dayjs {
       return this.dayjs().year(this.yearNumber).month(11).date(31)
     },
-    cellStyle() {
+    cellStyle(): string {
       return `width: ${this.cellSize || '1rem'}; height: ${this.cellSize || '1rem'}; box-sizing: border-box;`
     },
-    firstDay() {
+    firstDay(): number {
       let firstDay = this.firstYearDay.day()
       switch (this.firstWeekDay) {
         case 'monday':
@@ -52,7 +50,7 @@ export default defineComponent({
       }
       return firstDay
     },
-    monthNames() {
+    monthNames(): Array<string | ''> {
       const names = []
       let index = 0
       switch (this.firstWeekDay) {
@@ -126,7 +124,7 @@ export default defineComponent({
     },
   },
   methods: {
-    calcColor(eventsCount: number, isFuture: boolean) {
+    calcColor(eventsCount: number, isFuture: boolean): string {
       let color = '#f3f3f3'
       if (eventsCount === 1) {
         color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
@@ -177,7 +175,7 @@ export default defineComponent({
               'div',
               {},
               week.map(day => {
-                return h(Day, { cellStyle: this.cellStyle, day: day })
+                return h(Day as any, { cellStyle: this.cellStyle, day: day })
               })
             )
           })

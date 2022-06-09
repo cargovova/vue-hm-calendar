@@ -2,32 +2,30 @@ import { Dayjs } from 'dayjs'
 import { defineComponent, h, PropType } from 'vue-demi'
 import Day from './Day'
 import '../main.css'
-type RGB = `rgb(${number}, ${number}, ${number})`
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
-type HEX = `#${string}`
+import { colorType } from './../types'
 
 export default defineComponent({
   name: 'OneMonth',
   components: { Day },
   props: {
     dayjs: {
-      type: Dayjs,
+      type: Function,
       required: true,
     },
-    monthNumber: Number,
+    monthNumber: { type: Number, required: true },
     firstWeekDay: String,
     hideHeader: Boolean,
     eventsDays: Object,
-    pastEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
+    pastEventsColors: { type: Array as PropType<colorType[]>, required: true },
     cellSize: String,
-    yearNumber: Number,
-    futureEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
+    yearNumber: { type: Number, required: true },
+    futureEventsColors: { type: Array as PropType<colorType[]>, required: true },
   },
   computed: {
-    selectedMonthDate() {
+    selectedMonthDate(): Dayjs {
       return this.dayjs().year(this.yearNumber).month(this.monthNumber).date(1)
     },
-    firstDay() {
+    firstDay(): number {
       let firstDay = this.selectedMonthDate.day()
       switch (this.firstWeekDay) {
         case 'monday':
@@ -88,13 +86,13 @@ export default defineComponent({
       }
       return month
     },
-    cellStyle() {
+    cellStyle(): string {
       return `width: ${this.cellSize || '1rem'}; height: ${this.cellSize || '1rem'}; box-sizing: border-box;`
     },
   },
   methods: {
-    calcColor(eventsCount: number, isFuture: boolean) {
-      let color: string = '#f3f3f3'
+    calcColor(eventsCount: number, isFuture: boolean): string {
+      let color: colorType = '#f3f3f3'
       if (eventsCount === 1) {
         color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
       } else if (eventsCount === 2) {
@@ -113,7 +111,7 @@ export default defineComponent({
           'div',
           { style: { display: 'flex', 'flex-direction': 'row' } },
           week.map(day => {
-            return h(Day, { cellStyle: this.cellStyle, day: day })
+            return h(Day as any, { cellStyle: this.cellStyle, day: day })
           })
         )
       }),
