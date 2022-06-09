@@ -1,55 +1,29 @@
-<template>
-  <div style="display: inline-block; display: flex; flex-direction: row">
-    <div v-if="!hideWeekNames">
-      <div :style="'height: ' + (cellSize || '1rem')"></div>
-      <div v-for="(name, i) in monthNames" :key="i">
-        <div style="padding: 0.125rem">
-          <div :style="'height: ' + (cellSize || '1rem')">{{ name }}</div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div v-if="!hideHeader" class="header">
-        <div v-for="i in 12" :key="i">
-          <span v-if="i === 1">&nbsp;&nbsp;&nbsp;</span>
-          {{
-            dayjs()
-              .month(i - 1)
-              .format('MMM')
-          }}
-          <span v-if="i === 12">&nbsp;&nbsp;&nbsp;</span>
-        </div>
-      </div>
-      <div style="display: flex; flex-direction: row">
-        <div v-for="(week, i) in year" :key="i">
-          <day v-for="(day, i) in week" :key="i" :cellStyle="cellStyle" :day="day"> </day>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
+import { Dayjs } from 'dayjs'
+import { defineComponent, h, PropType } from 'vue-demi'
 import Day from './Day'
+import '../main.css'
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
 
-export default {
+export default defineComponent({
   name: 'OneYear',
   components: {
     Day,
   },
   props: {
     dayjs: {
-      type: Function,
+      type: Dayjs,
       required: true,
     },
     firstWeekDay: String,
     hideHeader: Boolean,
     eventsDays: Object,
-    pastEventsColors: Array,
+    pastEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
     cellSize: String,
     yearNumber: Number,
     hideWeekNames: Boolean,
-    futureEventsColors: Array,
+    futureEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
   },
   data() {
     return {
@@ -124,10 +98,10 @@ export default {
           if (i === 0 && j < this.firstDay) {
             dayOptions.date = null
           } else if (date === selectedDayOfYear) {
-            dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
+            dayOptions.style = `${this.calcColor(eventsCount, false)} border: 1px solid black; border-radius: 4px;`
             date++
           } else if (date === this.lastYearDay.dayOfYear()) {
-            dayOptions.style = this.calcColor(eventsCount)
+            dayOptions.style = this.calcColor(eventsCount, false)
             date++
           } else if (date > this.lastYearDay.dayOfYear()) {
             break
@@ -135,7 +109,7 @@ export default {
             dayOptions.style = this.calcColor(eventsCount, true)
             date++
           } else {
-            dayOptions.style = this.calcColor(eventsCount)
+            dayOptions.style = this.calcColor(eventsCount, false)
             date++
           }
           if (i === 0) {
@@ -152,7 +126,7 @@ export default {
     },
   },
   methods: {
-    calcColor(eventsCount, isFuture) {
+    calcColor(eventsCount: number, isFuture: boolean) {
       let color = '#f3f3f3'
       if (eventsCount === 1) {
         color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
@@ -164,14 +138,51 @@ export default {
       return `background-color: ${color};`
     },
   },
-}
-</script>
-
-<style scoped>
-.header {
-  display: inline-block;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-</style>
+  render() {
+    return h('div', { style: { display: 'flex', 'flex-direction': 'row' } }, [
+      !this.hideWeekNames
+        ? h('div', {}, [
+            h('div', { style: { height: this.cellSize || '1rem' } }),
+            this.monthNames.map(name => {
+              return h(
+                'div',
+                { style: { padding: '0.125rem' } },
+                h('div', { style: { height: this.cellSize || '1rem' } }, name)
+              )
+            }),
+          ])
+        : null,
+      h('div', {}, [
+        [
+          !this.hideHeader
+            ? h(
+                'div',
+                { class: 'yearHeader' },
+                [...new Array(12).keys()].map(i => {
+                  console.log(i)
+                  return h('div', {}, [
+                    [i === 0 ? h('span', { style: { 'padding-left': '15px' } }) : null],
+                    h('span', {}, this.dayjs().month(i).format('MMM')),
+                    [i === 11 ? h('span', { style: { 'padding-right': '15px' } }) : null],
+                  ])
+                })
+              )
+            : h('div', { class: 'yearHeader' }),
+        ],
+        h(
+          'div',
+          { style: { display: 'flex', 'flex-direction': 'row' } },
+          this.year.map(week => {
+            return h(
+              'div',
+              {},
+              week.map(day => {
+                return h(Day, { cellStyle: this.cellStyle, day: day })
+              })
+            )
+          })
+        ),
+      ]),
+    ])
+  },
+})

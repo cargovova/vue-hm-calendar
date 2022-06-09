@@ -24,7 +24,7 @@ export default defineComponent({
     futureEventsColors: Array as unknown as PropType<RGB | RGBA | HEX>,
   },
   computed: {
-    selectedMonthDate(): Dayjs {
+    selectedMonthDate() {
       return this.dayjs().year(this.yearNumber).month(this.monthNumber).date(1)
     },
     firstDay() {

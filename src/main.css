@@ -55,3 +55,11 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.yearHeader {
+  min-height: 1rem;
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

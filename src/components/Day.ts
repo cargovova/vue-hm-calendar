@@ -1,11 +1,15 @@
-import { defineComponent, h } from 'vue-demi'
+import { defineComponent, h, PropType } from 'vue-demi'
 import '../main.css'
+import { dayOptions } from './../types'
 
 export default defineComponent({
   name: 'DayItem',
   props: {
     cellStyle: String,
-    day: Object,
+    day: {
+      type: Object as PropType<dayOptions>,
+      required: true,
+    },
   },
   inject: ['$tooltipTranslation'],
   computed: {
@@ -38,7 +42,7 @@ export default defineComponent({
       'div',
       { style: { padding: '0.125rem' } },
       h('div', { style: commonStyle, class: ['tooltip', this.day.date ? 'hovered' : false] }, [
-        this.day.date ? h('span', { class: [this.tooltipClass, 'tooltiptext'] }, this.text) : false,
+        this.day.date ? h('span', { class: [this.tooltipClass, 'tooltiptext'], innerHTML: this.text }) : false,
       ])
     )
   },

@@ -4,7 +4,7 @@ import { Dayjs } from 'dayjs'
 import dayOfYear from 'dayjs/plugin/dayOfYear'
 dayjs.extend(dayOfYear)
 import Month from './components/Month'
-// import Year from './components/Year.vue'
+import Year from './components/Year'
 import { dinamicLoader } from './dinamicLoader'
 type RGB = `rgb(${number}, ${number}, ${number})`
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
@@ -60,7 +60,7 @@ export default defineComponent({
   },
   components: {
     Month,
-    // Year,
+    Year,
   },
   data() {
     return {
@@ -69,7 +69,7 @@ export default defineComponent({
   },
   provide() {
     return {
-      $tooltipTranslation: () => this.tooltipTranslation,
+      $tooltipTranslation: () => this.tooltipTranslation as String,
     }
   },
   async created() {
@@ -89,40 +89,24 @@ export default defineComponent({
       yearNumber: this.yearNumber,
       futureEventsColors: this.futureEventsColors,
     }
+    const yearProps = {
+      dayjs: this.dayjs,
+      hideWeekNames: this.hideWeekNames,
+      eventsDays: this.eventsDays,
+      pastEventsColors: this.pastEventsColors,
+      cellSize: this.cellSize,
+      yearNumber: this.yearNumber,
+      firstWeekDay: this.firstWeekDay,
+      hideHeader: this.hideHeader,
+      futureEventsColors: this.futureEventsColors,
+    }
     if (this.dayjs) {
       if (this.mode === 'month' || !this.mode) {
         return h('div', {}, h(Month, monthProps))
       }
+      if (this.mode === 'year') {
+        return h('div', {}, h(Year, yearProps))
+      }
     }
   },
 })
-/*
-<template>
-  <div v-if="dayjs">
-    <month
-      v-if="mode === 'month' || !mode"
-      :dayjs="dayjs"
-      :hideHeader="hideHeader"
-      :firstWeekDay="firstWeekDay"
-      :monthNumber="monthNumber"
-      :eventsDays="eventsDays"
-      :pastEventsColors="pastEventsColors"
-      :cellSize="cellSize"
-      :yearNumber="yearNumber"
-      :futureEventsColors="futureEventsColors"
-    />
-    <year
-      v-if="mode === 'year'"
-      :dayjs="dayjs"
-      :hideWeekNames="hideWeekNames"
-      :eventsDays="eventsDays"
-      :pastEventsColors="pastEventsColors"
-      :cellSize="cellSize"
-      :yearNumber="yearNumber"
-      :firstWeekDay="firstWeekDay"
-      :hideHeader="hideHeader"
-      :futureEventsColors="futureEventsColors"
-    />
-  </div>
-</template>
-*/

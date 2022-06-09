@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
+    "sourceMap": true,
     "importHelpers": true,
-    "moduleResolution": "node",
     "removeComments": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
     "baseUrl": ".",
+    "types": ["node"],
     "lib": ["es6", "dom", "es2017"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "shims-vue.d.ts"],
