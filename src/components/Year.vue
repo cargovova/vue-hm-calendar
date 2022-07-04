@@ -1,7 +1,7 @@
 <template>
   <div style="display: inline-block; display: flex; flex-direction: row">
     <div v-if="!hideWeekNames">
-      <div :style="'height: ' + (cellSize || '1rem')"></div>
+      <div v-if="!hideHeader" :style="'height: ' + (cellSize || '1rem')"></div>
       <div v-for="(name, i) in dayOfWeekNames" :key="i">
         <div style="padding: 0.125rem">
           <div :style="'height: ' + (cellSize || '1rem')">{{ name }}</div>
