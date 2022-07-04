@@ -8,11 +8,11 @@ Hi! I'm really excited that you are interested in contributing to vue-hm-calenda
 
 ## Pull Request Guidelines
 
-- The `master` branch is just a snapshot of the latest stable release. All development should be done in dedicated branches. **Do not submit PRs against the `master` branch.**
+1. Create branch for a feature.
+2. Create PR to `master` branch.
+- The master branch is protected! All commits must be made to a non-protected branch and submitted via a pull request before they can be merged into a branch that matches this rule.
 
-- Checkout a topic branch from the relevant branch, e.g. `dev`, and merge back against that branch.
-
-- Work in the `src` folder and **DO NOT** checkin `dist` in the commits.
+- Work in the `src` folder and **DO NOT** checkin `dist` and `dev` in the commits.
 
 ### Commonly used NPM scripts
 

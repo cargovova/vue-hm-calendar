@@ -14,7 +14,7 @@ jobs:
 
       - name: install, lint, test
         run: |
-          npm ci
+          npm i
           npm run lint
           npm run test:unit
 
