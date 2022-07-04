@@ -2,7 +2,7 @@
   <div style="display: inline-block; display: flex; flex-direction: row">
     <div v-if="!hideWeekNames">
       <div :style="'height: ' + (cellSize || '1rem')"></div>
-      <div v-for="(name, i) in monthNames" :key="i">
+      <div v-for="(name, i) in dayOfWeekNames" :key="i">
         <div style="padding: 0.125rem">
           <div :style="'height: ' + (cellSize || '1rem')">{{ name }}</div>
         </div>
@@ -78,7 +78,7 @@ export default {
       }
       return firstDay
     },
-    monthNames() {
+    dayOfWeekNames() {
       const names = []
       let index = 0
       switch (this.firstWeekDay) {
@@ -123,14 +123,11 @@ export default {
           }
           if (i === 0 && j < this.firstDay) {
             dayOptions.date = null
+          } else if (date > this.lastYearDay.dayOfYear()) {
+            break
           } else if (date === selectedDayOfYear) {
             dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
             date++
-          } else if (date === this.lastYearDay.dayOfYear()) {
-            dayOptions.style = this.calcColor(eventsCount)
-            date++
-          } else if (date > this.lastYearDay.dayOfYear()) {
-            break
           } else if (date > selectedDayOfYear) {
             dayOptions.style = this.calcColor(eventsCount, true)
             date++
